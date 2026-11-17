@@ -179,3 +179,13 @@ document.addEventListener('change',function(e){
  var el=e.target;
  if(el.dataset.step!==undefined){var t=S.tasks.find(function(x){return x.id===el.dataset.id});t.steps[+el.dataset.step].done=el.checked;if(t.steps.every(function(s){return s.done})&&t.steps.length){t.done=true;log('Completed '+t.title)}save();detail(t.id);render()}
  else if(el.dataset.s
+         if(k==='notify'){if(el.checked){if(perm()==='default'){Notification.requestPermission().then(function(){S.settings.notify=perm()==='granted';save();render()})}else{S.settings.notify=perm()==='granted';save();render()}}else{S.settings.notify=false;save();render()}}
+  else{S.settings[k]=el.checked;save()}}
+});
+document.addEventListener('input',function(e){if(e.target.id==='q'){query=e.target.value;var pos=e.target.selectionStart;render();var q=$('#q');q.focus();q.setSelectionRange(pos,pos)}});
+document.addEventListener('visibilitychange',function(){if(!document.hidden)check()});
+render();check();setInterval(check,10000);
+})();
+</script>
+</body>
+</html>
