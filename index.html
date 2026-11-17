@@ -179,7 +179,7 @@ document.addEventListener('click',function(e){
 document.addEventListener('change',function(e){
  var el=e.target;
  if(el.dataset.step!==undefined){var t=S.tasks.find(function(x){return x.id===el.dataset.id});t.steps[+el.dataset.step].done=el.checked;if(t.steps.every(function(s){return s.done})&&t.steps.length){t.done=true;log('Completed '+t.title)}save();detail(t.id);render()}
- else if(el.dataset.s
+ else if(el.dataset.s){var k=el.dataset.s;
          if(k==='notify'){if(el.checked){if(perm()==='default'){Notification.requestPermission().then(function(){S.settings.notify=perm()==='granted';save();render()})}else{S.settings.notify=perm()==='granted';save();render()}}else{S.settings.notify=false;save();render()}}
   else{S.settings[k]=el.checked;save()}}
 });
